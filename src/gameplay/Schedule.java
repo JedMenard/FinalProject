@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class Schedule extends JPanel{
+	private static final long serialVersionUID = 1L;
 	private ArrayList<String> binary;
 	private ArrayList<Integer> decimal;
 	private final static int NUMROOMS = 7; 

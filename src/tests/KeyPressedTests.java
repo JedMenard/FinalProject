@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sun.javafx.scene.traversal.Direction;
-
 import gameplay.Board;
 
 public class KeyPressedTests {

@@ -1,4 +1,5 @@
 package gameplay;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -6,16 +7,17 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class Board extends JPanel{
+	private static final long serialVersionUID = 1L;
 	private Player player;
 	private static final int MAX_ROWS = 50;
 	private static final int MAX_COLUMNS = 50; 
 	private Schedule schedule;
 	ArrayList<BoardCell> roomCells;
 	private Direction moveChoice;
-	
+
 	private BoardCell[][] map = new BoardCell[MAX_ROWS][MAX_COLUMNS];
 	private int numRows, numCols;
-	
+
 	public Board(){
 		player = new Player();
 		numRows = 0;
@@ -31,21 +33,8 @@ public class Board extends JPanel{
 			}
 		}
 	}
-	
-	public BoardCell[][] getMap() {
-		return map;
-	}
 
-	public int getNumRows() {
-		return numRows;
-	}
 
-	public int getNumCols() {
-		return numCols;
-	}
-	public Player getPlayer() {
-		return player;
-	}
 
 
 	public boolean playerInRoom(){
@@ -67,19 +56,41 @@ public class Board extends JPanel{
 
 		}
 	}
-	
-	public Direction getMoveChoice() {
-		return moveChoice;
-	}
+	public void movePlayer(Direction direction){
 
+	}	
+
+
+
+
+	@Override
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		for(int col = numCols-1; col >= 0; col--){
+			for (int row = 0; row < numRows; row++){
+				map[row][col].draw(g);
+			}
+		}
+	}
+		
 	public boolean isKeyTest() {
 		return keyTest;
 	}
-
-	public void movePlayer(Direction direction){
-		
+	public BoardCell[][] getMap() {
+		return map;
 	}
-	
+	public Direction getMoveChoice() {
+		return moveChoice;
+	}
+	public int getNumRows() {
+		return numRows;
+	}
+	public int getNumCols() {
+		return numCols;
+	}
+	public Player getPlayer() {
+		return player;
+	}
 	public enum Direction{
 		UP, LEFT, DOWN, RIGHT, NONE;
 	}
