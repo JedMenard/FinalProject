@@ -9,8 +9,8 @@ import org.junit.Test;
 
 public class BoardTests {
 	static Board board;
-	private final static int NUMROWS = 30;
-	private final static int NUMCOLUMNS = 30;
+	private final static int NUMROWS = 20;
+	private final static int NUMCOLUMNS = 20;
 	
 	@BeforeClass
 	public static void init(){
@@ -28,13 +28,13 @@ public class BoardTests {
 	public void layoutTests(){
 		// Tests that the 7 rooms are in the right place
 		
-		assertTrue((board.getMap())[0][0].isRoom());
-		assertTrue((board.getMap())[8][4].isRoom());
-		assertTrue((board.getMap())[9][23].isRoom());
-		assertTrue((board.getMap())[13][0].isRoom());
-		assertTrue((board.getMap())[20][8].isRoom());
-		assertTrue((board.getMap())[19][23].isRoom());
-		assertTrue((board.getMap())[29][29].isRoom());
+		assertTrue((board.getMap())[3][2].isRoom());
+		assertTrue((board.getMap())[1][8].isRoom());
+		assertTrue((board.getMap())[4][16].isRoom());
+		assertTrue((board.getMap())[15][7].isRoom());
+		assertTrue((board.getMap())[16][10].isRoom());
+		assertTrue((board.getMap())[10][14].isRoom());
+		assertTrue((board.getMap())[16][18].isRoom());
 		
 		// Tests that hallways don't return as rooms
 		assertFalse((board.getMap())[5][9].isRoom());
@@ -43,7 +43,7 @@ public class BoardTests {
 	@Test
 	public void playerPostiion(){
 		// Tests that the player starts in the right place
-		assertEquals(8, board.getPlayer().getRow());
-		assertEquals(8, board.getPlayer().getColumn());
+		assertEquals(1, board.getPlayer().getRow());
+		assertEquals(0, board.getPlayer().getColumn());
 	}
 }

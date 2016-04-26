@@ -23,7 +23,6 @@ public class Board extends JPanel{
 	private int numRows, numCols;
 
 	public Board(){
-		player = new Player();
 		schedule = new Schedule();
 		moveChoice = Direction.NONE;
 		map = new BoardCell[MAX_ROWS][MAX_COLUMNS];
@@ -48,6 +47,8 @@ public class Board extends JPanel{
 					String cell = str.substring(0, str.indexOf(','));
 					
 					tempBoard[row][col] = new BoardCell(row, col, 0, null);
+					if(cell.equals("R")) tempBoard[row][col].setHallway(false);
+					if(cell.equals("P")) player = new Player(row,col);
 					col++;
 					str = str.substring(str.indexOf(',')+1);
 				}

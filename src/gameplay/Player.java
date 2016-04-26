@@ -4,6 +4,10 @@ import java.util.ArrayList;
 public class Player {
 	private ArrayList<String> schedule;
 	private int row, column;
+	public Player(int row, int column){
+		this.row = row;
+		this.column = column;
+	}
 	public int getRow() {
 		return row;
 	}
