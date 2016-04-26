@@ -3,8 +3,6 @@ package gameplay;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Wildcard;
-
 public class BoardCell {
 	private int row, column;
 	private boolean hallway;
@@ -13,7 +11,9 @@ public class BoardCell {
 	private final static int WIDTH = 50;
 	private final static int HEIGHT = 50;
 	
-	public BoardCell(int deciRep, String binRep){
+	public BoardCell(int row, int column, int deciRep, String binRep){
+		this.row = row;
+		this.column = column;
 		this.deciRep = deciRep;
 		this.binRep = binRep;
 	}
@@ -26,10 +26,11 @@ public class BoardCell {
 			g.setColor(Color.WHITE);
 		}
 		g.fillRect(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
+		g.setColor(Color.BLUE);
 		g.drawRect(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
 	}
 	
 	public boolean isRoom(){
-		return false;
+		return !hallway;
 	}
 }

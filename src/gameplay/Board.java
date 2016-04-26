@@ -2,7 +2,11 @@ package gameplay;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JPanel;
 
@@ -20,26 +24,60 @@ public class Board extends JPanel{
 
 	public Board(){
 		player = new Player();
-		numRows = 0;
-		numCols = 0;
 		schedule = new Schedule();
 		moveChoice = Direction.NONE;
-		map = new BoardCell[30][30];
-		for(int i = 0; i < 30;i++)
-		{
-			for(int j = 0; j < 30;j++)
-			{
-				map[i][j] = new BoardCell(0,"0");
+		map = new BoardCell[MAX_ROWS][MAX_COLUMNS];
+		loadBoard();
+	}
+
+	public void loadBoard() {
+		try {
+			FileReader fin = new FileReader("BinMap.csv");
+			Scanner in = new Scanner(fin);
+			BoardCell[][]  tempBoard = new BoardCell[MAX_ROWS][MAX_COLUMNS];
+
+			String str;
+			int row = 0;
+			int col = 0;
+			int prevCol = 0;
+			while(in.hasNextLine()){
+
+				str = in.nextLine();
+				col = 0;
+				while(str.contains(",")){
+					String cell = str.substring(0, str.indexOf(','));
+					
+					tempBoard[row][col] = new BoardCell(row, col, 0, null);
+					col++;
+					str = str.substring(str.indexOf(',')+1);
+				}
+				//repeat while loop once more to get last cell
+				String cell = str;
+				tempBoard[row][col] = new BoardCell(row, col, 0, null);
+				col++;
+				prevCol = col;
+				row++;
 			}
+			numRows = row;
+			numCols = col;
+			
+			for(int i = 0; i < numRows; i++){
+				for(int j = 0; j < numCols; j++){
+					map[i][j] = tempBoard[i][j];
+				}
+			}
+
+
+			fin.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Failed to open load file.");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Failed to close load file. Wat?");
+			e.printStackTrace();
 		}
 	}
 
-
-
-
-	public boolean playerInRoom(){
-		return map[player.getRow()][player.getColumn()].isRoom();
-	}
 	public boolean keyTest = false;
 	public class MovingListener implements KeyListener{
 		@Override
@@ -66,13 +104,18 @@ public class Board extends JPanel{
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		System.out.println(numCols);
+		System.out.println(numRows);
 		for(int col = numCols-1; col >= 0; col--){
 			for (int row = 0; row < numRows; row++){
 				map[row][col].draw(g);
 			}
 		}
 	}
-		
+
+	public boolean playerInRoom(){
+		return map[player.getRow()][player.getColumn()].isRoom();
+	}	
 	public boolean isKeyTest() {
 		return keyTest;
 	}
