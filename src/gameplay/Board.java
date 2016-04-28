@@ -112,9 +112,12 @@ public class Board extends JPanel{
 				map[row][col].draw(g);
 			}
 		}
+		player.draw(g);
 	}
 
 	public boolean playerInRoom(){
+		System.out.println(player.getRow());
+		System.out.println(player.getColumn());
 		return map[player.getRow()][player.getColumn()].isRoom();
 	}	
 	public boolean isKeyTest() {

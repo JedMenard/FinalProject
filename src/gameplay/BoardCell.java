@@ -21,19 +21,25 @@ public class BoardCell {
 	public void draw(Graphics g){
 		if(hallway){
 			g.setColor(Color.WHITE);
+			g.fillRect(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
+			g.setColor(Color.BLUE);
+			g.drawRect(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
 		}
 		else{
 			g.setColor(Color.BLACK);
+			g.fillRect(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
+			g.setColor(Color.BLUE);
+			g.drawRect(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
+			g.setColor(Color.YELLOW);
+			g.drawString(Integer.toString(deciRep),(int)((column+0.5)*WIDTH),(int)((row+0.5)*HEIGHT));
 		}
-		g.fillRect(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
-		g.setColor(Color.BLUE);
-		g.drawRect(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
+		
 	}
 	
 	public boolean isRoom(){
 		return !hallway;
 	}
-
+	
 	public void setHallway(boolean hallway) {
 		this.hallway = hallway;
 	}

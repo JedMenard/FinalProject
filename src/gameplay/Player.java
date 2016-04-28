@@ -1,9 +1,14 @@
 package gameplay;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class Player {
 	private ArrayList<String> schedule;
 	private int row, column;
+	private final static int WIDTH = 50;
+	private final static int HEIGHT = 50;
+	
 	public Player(int row, int column){
 		this.row = row;
 		this.column = column;
@@ -21,5 +26,8 @@ public class Player {
 		this.column = column;
 	}
 	
-	
+	public void draw(Graphics g){
+		g.setColor(Color.RED);
+		g.fillOval(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
+	}
 }
