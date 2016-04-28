@@ -6,8 +6,8 @@ import java.awt.Graphics;
 public class BoardCell {
 	private int row, column;
 	private boolean hallway = true;
-	private String binRep;
-	private int deciRep;
+	public String binRep;
+	public int deciRep;
 	private final static int WIDTH = 50;
 	private final static int HEIGHT = 50;
 	
@@ -36,6 +36,14 @@ public class BoardCell {
 		
 	}
 	
+	public void setBinRep(String binRep) {
+		this.binRep = binRep;
+	}
+
+	public void setDeciRep(int deciRep) {
+		this.deciRep = deciRep;
+	}
+
 	public boolean isRoom(){
 		return !hallway;
 	}

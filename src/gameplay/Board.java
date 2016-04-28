@@ -28,6 +28,10 @@ public class Board extends JPanel{
 		map = new BoardCell[MAX_ROWS][MAX_COLUMNS];
 		loadBoard();
 	}
+	
+	public Schedule getSchedule() {
+		return schedule;
+	}
 
 	public void loadBoard() {
 		try {
@@ -47,7 +51,14 @@ public class Board extends JPanel{
 					String cell = str.substring(0, str.indexOf(','));
 					
 					tempBoard[row][col] = new BoardCell(row, col, 0, null);
-					if(cell.equals("R")) tempBoard[row][col].setHallway(false);
+					if(cell.equals("R")) 
+					{	
+						tempBoard[row][col].setHallway(false);
+						tempBoard[row][col].setBinRep((schedule.getBinary()).get(0));
+						tempBoard[row][col].setDeciRep((schedule.getDecimal()).get(0));
+						System.out.println();
+						schedule.reduceList();
+					}
 					if(cell.equals("P")) player = new Player(row,col);
 					col++;
 					str = str.substring(str.indexOf(',')+1);
@@ -105,8 +116,6 @@ public class Board extends JPanel{
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		System.out.println(numCols);
-		System.out.println(numRows);
 		for(int col = numCols-1; col >= 0; col--){
 			for (int row = 0; row < numRows; row++){
 				map[row][col].draw(g);

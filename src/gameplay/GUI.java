@@ -12,7 +12,7 @@ public class GUI extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		map = new Board();
 		add(map,BorderLayout.CENTER);
-		add(new Schedule(), BorderLayout.EAST);
+		add(map.getSchedule(),BorderLayout.EAST);
 	}
 	
 	

@@ -31,12 +31,18 @@ public class Schedule extends JPanel{
 		while(decimal.size() < NUMROOMS){
 			int temp = r.nextInt(99);
 			if(!decimal.contains(temp)){
+				System.out.println(temp);
 				decimal.add(temp);
 				binary.add(Integer.toBinaryString(temp));
+				System.out.println(Integer.toBinaryString(temp));
 			}
 		}
 	}
-
+	public void reduceList()
+	{
+		binary.remove(0);
+		decimal.remove(0);
+	}
 	public ArrayList<String> getBinary() {
 		return binary;
 	}
