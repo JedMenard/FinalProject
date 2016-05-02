@@ -28,7 +28,7 @@ public class Board extends JPanel{
 		map = new BoardCell[MAX_ROWS][MAX_COLUMNS];
 		loadBoard();
 	}
-	
+
 	public Schedule getSchedule() {
 		return schedule;
 	}
@@ -49,7 +49,7 @@ public class Board extends JPanel{
 				col = 0;
 				while(str.contains(",")){
 					String cell = str.substring(0, str.indexOf(','));
-					
+
 					tempBoard[row][col] = new BoardCell(row, col, 0, null);
 					if(cell.equals("R")) 
 					{	
@@ -72,7 +72,7 @@ public class Board extends JPanel{
 			}
 			numRows = row;
 			numCols = col;
-			
+
 			for(int i = 0; i < numRows; i++){
 				for(int j = 0; j < numCols; j++){
 					map[i][j] = tempBoard[i][j];
@@ -91,27 +91,27 @@ public class Board extends JPanel{
 	}
 
 	public boolean keyTest = false;
-	public class MovingListener implements KeyListener{
-		@Override
-		public void keyTyped(KeyEvent arg0) {
-			keyTest = true;
-			moveChoice = Direction.UP;
-		}
 
-		@Override
-		public void keyPressed(KeyEvent arg0) {
-		}
-		@Override
-		public void keyReleased(KeyEvent arg0) {
-
+	public void movePlayer(){
+		switch(moveChoice){
+		case UP:
+			if (player.getRow() > 0)
+				player.setRow(player.getRow()-1);
+			break;
+		case DOWN:
+			if (player.getRow() + 1 < numRows)
+				player.setRow(player.getRow()+1);
+			break;
+		case LEFT:
+			if (player.getColumn() > 0)
+				player.setColumn(player.getColumn()-1);
+			break;
+		case RIGHT:
+			if (player.getColumn() + 1 < numCols)
+				player.setColumn(player.getColumn()+1);
+			break;
 		}
 	}
-	public void movePlayer(Direction direction){
-
-	}	
-
-
-
 
 	@Override
 	public void paintComponent(Graphics g){
@@ -146,6 +146,9 @@ public class Board extends JPanel{
 	}
 	public Player getPlayer() {
 		return player;
+	}
+	public void setMoveChoice(Direction moveChoice) {
+		this.moveChoice = moveChoice;
 	}
 	public enum Direction{
 		UP, LEFT, DOWN, RIGHT, NONE;
