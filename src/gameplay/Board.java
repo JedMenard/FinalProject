@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -35,7 +36,8 @@ public class Board extends JPanel{
 
 	public void loadBoard() {
 		try {
-			FileReader fin = new FileReader("BinMap.csv");
+			//FileReader fin = new FileReader("BinMap.csv");
+			InputStream fin = getClass().getResourceAsStream("/data/BinMap.csv");
 			@SuppressWarnings("resource")
 			Scanner in = new Scanner(fin);
 			BoardCell[][]  tempBoard = new BoardCell[MAX_ROWS][MAX_COLUMNS];
