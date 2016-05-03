@@ -6,8 +6,8 @@ import java.awt.Graphics;
 public class BoardCell {
 	private int row, column;
 	private boolean hallway = true;
-	public String binRep;
 	public int deciRep;
+	private boolean isAlready = false;
 	private final static int WIDTH = 50;
 	private final static int HEIGHT = 50;
 	
@@ -15,7 +15,6 @@ public class BoardCell {
 		this.row = row;
 		this.column = column;
 		this.deciRep = deciRep;
-		this.binRep = binRep;
 	}
 	
 	public void draw(Graphics g){
@@ -26,7 +25,14 @@ public class BoardCell {
 			g.drawRect(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
 		}
 		else{
-			g.setColor(Color.BLACK);
+			if(isAlready)
+			{
+				g.setColor(Color.GRAY);
+			}
+			else
+			{
+				g.setColor(Color.BLACK);
+			}
 			g.fillRect(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
 			g.setColor(Color.BLUE);
 			g.drawRect(column*WIDTH, row*HEIGHT, WIDTH, HEIGHT);
@@ -35,9 +41,8 @@ public class BoardCell {
 		}
 		
 	}
-	
-	public void setBinRep(String binRep) {
-		this.binRep = binRep;
+	public boolean isAlready() {
+		return isAlready;
 	}
 
 	public void setDeciRep(int deciRep) {
@@ -50,6 +55,15 @@ public class BoardCell {
 	
 	public void setHallway(boolean hallway) {
 		this.hallway = hallway;
+	}
+
+	public Integer getDecimal() {
+		return deciRep;
+	}
+
+	public void setIsAlready(boolean b) {
+		isAlready = b;
+		
 	}
 	
 }

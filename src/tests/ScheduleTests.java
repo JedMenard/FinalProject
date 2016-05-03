@@ -32,7 +32,7 @@ public class ScheduleTests {
 			foundBin.add(s);
 		}
 		
-		assertEquals(7, schedule.getBinary().size());
+		assertEquals(0, schedule.getBinary().size());
 		assertEquals(7, schedule.getDecimal().size());
 	}
 

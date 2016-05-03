@@ -1,10 +1,8 @@
 package gameplay;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
 
 public class Player {
-	private ArrayList<String> schedule;
 	private int row, column;
 	private final static int WIDTH = 50;
 	private final static int HEIGHT = 50;

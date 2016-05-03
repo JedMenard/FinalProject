@@ -14,7 +14,7 @@ public class BoardTests {
 	
 	@BeforeClass
 	public static void init(){
-		board = new Board();
+		board = new Board(new GUI());
 		
 	}
 	

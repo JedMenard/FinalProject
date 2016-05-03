@@ -6,13 +6,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import gameplay.Board;
+import gameplay.GUI;
 
 public class RoomTests {
 	static Board board;
 	
 	@BeforeClass
 	public static void init(){
-		board = new Board();
+		board = new Board(new GUI());
 	}
 	
 	@Test
